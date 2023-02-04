@@ -47,13 +47,13 @@ import puppeteer from "puppeteer";
       await page.click('[data-testid="pagination-page-next"]');
       await page.waitForSelector("div.jobsearch-SerpMainContent");
 
-      await new Promise((r) => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 2000));
     }
   }
   let listadoJobs = [];
   for (let i = 0; i < listadoLinks.length; i++) {
     await page.goto(listadoLinks[i].link);
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 2000));
 
     let job = await page.evaluate(() => {
       let tmp = {};
