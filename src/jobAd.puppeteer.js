@@ -1,19 +1,22 @@
 export const getJobsData = async (page, jobsLinks) => {
   let listadoJobs = [];
   for (let i = 0; i < jobsLinks.length; i++) {
-    await page.goto(jobsLinks[i].link);
-    await new Promise((r) => setTimeout(r, 2000));
+    try {
+      await page.goto(jobsLinks[i].link);
+      await new Promise((r) => setTimeout(r, 2000));
+    } catch (error) {
+      continue;
+    }
 
     let job = await page.evaluate(() => {
       let tmp = {};
-      tmp.jobTitle =
-        document.querySelector(
-          "div.jobsearch-JobInfoHeader-title-container h1 span"
-        )?.textContent ?? null;
+      tmp.title = document.querySelector(
+        "div.jobsearch-JobInfoHeader-title-container h1 span"
+      )?.textContent;
 
-      tmp.jobDescription = document.querySelector(
-        "#jobDescriptionText"
-      )?.innerText;
+      tmp.description = document
+        .querySelector("#jobDescriptionText")
+        ?.innerText.trim();
       return tmp;
     });
     job.salary =

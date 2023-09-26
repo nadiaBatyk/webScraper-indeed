@@ -3,9 +3,10 @@ import { argv } from "./src/yargs.config.js";
 import { getJobsLinks } from "./src/jobsList.puppeteer.js";
 import { getJobsData } from "./src/jobAd.puppeteer.js";
 import puppeteer from "puppeteer";
+import { processJobList } from "./src/dataProcessing.js";
 
 (async () => {
-  const { query, days, sort, keywords } = argv;
+  const { query, days, sort, include, exclude } = argv;
   console.log(argv);
   const url = `https://au.indeed.com/jobs?q=${query}${
     sort ? "&sort=date" : ""
@@ -17,11 +18,12 @@ import puppeteer from "puppeteer";
 
   console.log(listadoJobs);
   console.log(listadoJobs.length);
+  let finalJobList = processJobList(listadoJobs);
   const informe = {
     fecha: new Date().toLocaleDateString(),
     busqueda: query,
-    listado: listadoJobs,
-    qtyAvisos: listadoJobs.length,
+    qtyAvisos: finalJobList.length,
+    listado: finalJobList,
   };
   console.log(informe);
   await browser.close();

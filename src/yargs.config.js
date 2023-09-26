@@ -19,15 +19,21 @@ export const argv = yargs(hideBin(process.argv))
     describe: "Sort the search result by date",
     type: "boolean",
   })
-  .option("keywords", {
-    alias: ["k", "keywords"],
-    describe: "Keywords to filter the results",
+  .option("include", {
+    alias: ["i", "include"],
+    describe: "Only show ads including these keywords",
+    type: "array",
+    coerce: (k) => new RegExp(k.join("|"), "gi"),
+  })
+  .option("exclude", {
+    alias: ["e", "exclude"],
+    describe: "Keywords to filter and exclude the results",
     type: "array",
     coerce: (k) => new RegExp(k.join("|"), "gi"),
   })
   .demandOption(
-    ["query", "keywords"],
-    "Please specify the query and at least 1 keyword"
+    ["query", "include", "exclude"],
+    "Please specify the query and at least 1 include and exclude keyword"
   )
   .help()
   .parse();
