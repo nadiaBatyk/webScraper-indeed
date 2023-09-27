@@ -2,9 +2,10 @@ export const getJobsLinks = async (page, url) => {
   await page.goto(url);
 
   await page.waitForSelector("div#mosaic-jobResults");
-
+  //seek div[class="_1wkzzau0 szurmz0 szurmz4"]
   let listadoLinks = [];
   let visible = (await page.$('[data-testid="pagination-page-next"]')) !== null;
+  //seek va hasta la pagina 25 siempre ??? no mas xq crashea
   let i = 0;
   while (visible && i < 5) {
     let nuevosLinks = await page.evaluate(() => {
