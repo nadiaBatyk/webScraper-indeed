@@ -17,6 +17,7 @@ export const argv = yargs(hideBin(process.argv))
   .option("sort", {
     alias: ["s", "sort"],
     describe: "Sort the search result by date",
+    default: true,
     type: "boolean",
   })
   .option("include", {

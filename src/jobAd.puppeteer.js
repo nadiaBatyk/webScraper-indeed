@@ -16,7 +16,7 @@ export const getJobsData = async (page, jobsLinks) => {
 
       tmp.description = document
         .querySelector("#jobDescriptionText")
-        ?.innerText.trim();
+        ?.textContent.trim();
       return tmp;
     });
     job.salary =

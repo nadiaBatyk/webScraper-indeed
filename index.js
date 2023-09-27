@@ -16,9 +16,9 @@ import { processJobList } from "./src/dataProcessing.js";
   let listadoLinks = await getJobsLinks(page, url);
   let listadoJobs = await getJobsData(page, listadoLinks);
 
-  console.log(listadoJobs);
-  console.log(listadoJobs.length);
-  let finalJobList = processJobList(listadoJobs);
+  //console.log(listadoJobs);
+  //console.log(listadoJobs.length);
+  let finalJobList = processJobList(listadoJobs, include, exclude);
   const informe = {
     fecha: new Date().toLocaleDateString(),
     busqueda: query,

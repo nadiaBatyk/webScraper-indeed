@@ -1,5 +1,6 @@
 //include y exclude son 2 regex no arrays
 export const processJobList = (jobList, include, exclude) => {
+  let refinedList = [];
   for (const job of jobList) {
     if (
       job.title.match(exclude)?.length ||
@@ -9,10 +10,11 @@ export const processJobList = (jobList, include, exclude) => {
     }
     //crear 1 sistema de score del trabajo???
     job.score = 0;
-    job.score += job.title.match(include)?.length + 2;
-    job.score += job.description.match(include)?.length + 1;
-    job.score -= job.description.match(exclude)?.length;
+    job.score += 2 + job.title.match(include)?.length || 0;
+    job.score += 1 + job.description.match(include)?.length || 0;
+    job.score -= job.description.match(exclude)?.length || 0;
     delete job.description;
+    refinedList.push(job);
   }
-  return jobList;
+  return refinedList.sort((a, b) => a.score - b.score);
 };

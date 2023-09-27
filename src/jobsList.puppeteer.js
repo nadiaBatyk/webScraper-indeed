@@ -6,7 +6,7 @@ export const getJobsLinks = async (page, url) => {
   let listadoLinks = [];
   let visible = (await page.$('[data-testid="pagination-page-next"]')) !== null;
   let i = 0;
-  while (visible && i < 2) {
+  while (visible && i < 5) {
     let nuevosLinks = await page.evaluate(() => {
       let links = [];
       let rawLinks = document.querySelectorAll(
