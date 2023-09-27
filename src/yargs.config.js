@@ -6,7 +6,7 @@ export const argv = yargs(hideBin(process.argv))
     alias: ["q", "query"],
     describe: "The job title / job query to perform",
     type: "string",
-    coerce: (k) => k.split(" ").join("+"),
+    coerce: (k) => k.split(" "),
   })
   .option("days", {
     alias: ["d", "days"],
