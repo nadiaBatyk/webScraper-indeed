@@ -31,5 +31,5 @@ import { processJobList } from "./src/dataProcessing.js";
   console.log(informe);
   await browser.close();
 
-  //fs.writeFileSync("codigos.json", JSON.stringify(def));
+  fs.writeFileSync("results.json", JSON.stringify(def));
 })();

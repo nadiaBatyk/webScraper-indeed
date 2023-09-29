@@ -2,6 +2,9 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
 export const argv = yargs(hideBin(process.argv))
+  .usage(
+    "This is the basic usage: \nnode $0 -query 'software engineer' -include junior backend remote -exclude senior .net java php"
+  )
   .option("query", {
     alias: ["q", "query"],
     describe: "The job title / job query to perform",
@@ -36,5 +39,5 @@ export const argv = yargs(hideBin(process.argv))
     ["query", "include", "exclude"],
     "Please specify the query and at least 1 include and exclude keyword"
   )
-  .help()
+  .showHelpOnFail(true)
   .parse();
