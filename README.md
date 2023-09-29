@@ -1,6 +1,6 @@
 # Web Scraper Indeed.com.au
 
-An easy and time effective way to look for a job on Indeed.com.au
+An easy and time effective CLI tool to look for a job on Indeed.com.au
 
 ## Table of Contents
 
